@@ -2,7 +2,7 @@ pipeline {
     agent: any
     stages {
         stage('Build') {
-            agent { backend/Dockerfile true }
+            agent { dockerfile true }
             steps {
                 sh 'node --version'
                 sh 'svn --version'
