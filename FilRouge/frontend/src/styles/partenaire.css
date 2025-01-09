@@ -1,0 +1,23 @@
+.customer-section {
+    overflow: hidden;
+  }
+  
+  .scroll-banner ul {
+    display: flex;
+    white-space: nowrap;
+    animation: scrollBanner 20s linear infinite;
+  }
+  
+  .scroll-banner li {
+    margin-right: 12px;
+  }
+  
+  @keyframes scrollBanner {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  

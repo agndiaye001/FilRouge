@@ -1,0 +1,79 @@
+/* styles.css */
+
+/* Navbar */
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+  }
+  
+  .navbar .logo {
+    font-size: 24px;
+  }
+  
+  .navbar .nav-links {
+    display: flex;
+    list-style-type: none;
+    justify-content: space-around;
+  }
+  
+  .navbar .nav-links li {
+    padding: 10px;
+  }
+  
+  .navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .navbar .nav-links a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: #222;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .footer .footer-content ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .footer .footer-content ul li {
+    display: inline;
+    margin: 0 10px;
+  }
+  
+  .footer .footer-content ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .footer .footer-content ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Header */
+  .header {
+    background-color: #007bff;
+    color: white;
+    padding: 50px;
+    text-align: center;
+  }
+  
+  .header button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ffcc00;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .header button:hover {
+    background-color: #ff9900;
+  }
+  
