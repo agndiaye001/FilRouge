@@ -1,8 +1,8 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
-            agent { dockerfile true }  
+        stage('test') {
+            agent { dockerfile 'FilRouge/backend/Jenkinsfile' }  
             stages {
                 stage('Test') {
                     steps {
