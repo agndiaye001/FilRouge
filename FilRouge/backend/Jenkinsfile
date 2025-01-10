@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-          stage('Build Docker Compose ') {
+        stage('Build Docker Compose ') {
             steps {
                 script {
                     if (!fileExists('FilRouge/backend')) {
