@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Release') {
             steps {
-                script {
+                withCredentials([string(credentialsId: 'token-github', variable: 'GITHUB_TOKEN')])  {
                     // Génère un numéro de version en fonction de la date ou d'autres paramètres
                     RELEASE_VERSION = "v1.0.${env.BUILD_NUMBER}"
                     echo "Creating Release: ${RELEASE_VERSION}"
@@ -35,7 +35,7 @@ pipeline {
                     git config --global user.name "angdiaye001"
                     git config --global user.email "mamindiaye0101@gmail.com"
                     git tag -a ${RELEASE_VERSION} -m "Release ${RELEASE_VERSION}"
-                    git push https://agndiaye001:Douleplus01&@github.com/agndiaye001/FilRouge.git ${RELEASE_VERSION}
+                    git push https://github.com/agndiaye001/FilRouge.git ${RELEASE_VERSION}
                     """
 
 
