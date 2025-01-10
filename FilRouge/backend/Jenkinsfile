@@ -35,7 +35,7 @@ pipeline {
                     git config user.name "Jenkins CI"
                     git config user.email "mamindiaye0101@gmail.com"
                     git tag -a ${RELEASE_VERSION} -m "Release ${RELEASE_VERSION}"
-                    git push origin ${RELEASE_VERSION}
+                    git push origin prod ${RELEASE_VERSION}
                     """
 
                     // Publier un artefact ou une release (exemple pour GitHub)
