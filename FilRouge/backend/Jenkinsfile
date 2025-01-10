@@ -6,47 +6,49 @@ pipeline {
     stages {
         stage('List Files') {
             steps {
+                // Liste les fichiers du répertoire
                 sh 'ls -la FilRouge/backend'
             }
         }
         stage('Build Dockerfile') {
             steps {
                 script {
-                    // Construire l'image Docker en utilisant le Dockerfile dans le bon répertoire
-                    def customImage = docker.build('python:3.12.2', 'FilRouge/backend')
+                    // Construire l'image Docker à partir du Dockerfile
+                    def customImage = docker.build('filrouge-backend', 'FilRouge/backend')
                 }
             }
         }
-
-        stage('Build Docker Compose ') {
+        stage('Build Docker Compose') {
             steps {
                 script {
+                    // Vérifie si le répertoire existe
                     if (!fileExists('FilRouge/backend')) {
                         error "Le répertoire 'FilRouge/backend' est introuvable."
                     }
-                    sh 'docker-compose -f ${DOCKER_COMPOSE_FILE}  up --build -d'
+                    // Lance le build avec docker-compose
+                    sh 'docker-compose -f ${DOCKER_COMPOSE_FILE} up --build -d'
                 }
             }
         }
         stage('Run Tests') {
             steps {
-                sh 'docker-compose -f ${DOCKER_COMPOSE_FILE}  run test'
+                // Exécute les tests définis dans le service Docker Compose
+                sh 'docker-compose -f ${DOCKER_COMPOSE_FILE} run test'
             }
         }
-
         stage('Cleanup') {
             steps {
+                // Arrête et nettoie les conteneurs, réseaux et volumes
                 sh 'docker-compose -f ${DOCKER_COMPOSE_FILE} down'
             }
         }
-        post {
-            failure {
-                echo 'Une erreur est survenue pendant le pipeline.'
-            }
-            always {
-                echo 'Pipeline terminé.'
-            }
+    }
+    post {
+        failure {
+            echo 'Une erreur est survenue pendant le pipeline.'
+        }
+        always {
+            echo 'Pipeline terminé.'
         }
     }
 }
-
