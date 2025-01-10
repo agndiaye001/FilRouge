@@ -32,8 +32,8 @@ pipeline {
 
                     // Crée un tag Git pour la release
                     sh """
-                    git config user.name "Jenkins CI"
-                    git config user.email "mamindiaye0101@gmail.com"
+                    git config --global user.name "angdiaye001"
+                    git config --global user.email "mamindiaye0101@gmail.com"
                     git tag -a ${RELEASE_VERSION} -m "Release ${RELEASE_VERSION}"
                     git push origin ${RELEASE_VERSION}
                     """
