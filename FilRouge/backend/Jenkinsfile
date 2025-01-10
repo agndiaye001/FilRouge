@@ -35,8 +35,12 @@ pipeline {
                     git config --global user.name "angdiaye001"
                     git config --global user.email "mamindiaye0101@gmail.com"
                     git tag -a ${RELEASE_VERSION} -m "Release ${RELEASE_VERSION}"
-                    git push origin ${RELEASE_VERSION}
+                    git push https://<username>:<PAT>@github.com/agndiaye001/FilRouge.git ${RELEASE_VERSION}
                     """
+
+
+                    sh "git tag"
+                    sh "git ls-remote --tags origin"
 
                     // Publier un artefact ou une release (exemple pour GitHub)
                     // Vous pouvez ajouter des étapes pour télécharger des fichiers à une plateforme comme GitHub, Nexus ou Artifactory.
