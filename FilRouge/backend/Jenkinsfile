@@ -2,7 +2,7 @@ pipeline {
     agent any
     stages {
         stage('test') {
-            agent { dockerfile 'FilRouge/backend/Jenkinsfile' }  
+            agent { dockerfile 'FilRouge/backend/Dockerfile' }  
             stages {
                 stage('Test') {
                     steps {
