@@ -1,14 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('test') {
-            agent { dockerfile 'FilRouge/backend/Dockerfile' }  
-            stages {
-                stage('Test') {
-                    steps {
-                        sh 'docker --version'
-                    }
-                }
+       stage('List Files') {
+           steps {
+                sh 'ls -la'
             }
         }
     }
