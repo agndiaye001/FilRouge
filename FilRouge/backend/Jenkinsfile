@@ -34,13 +34,13 @@ pipeline {
         stage('Run Tests') {
             steps {
                 // Exécute les tests définis dans le service Docker Compose
-                sh 'docker-compose -f ${DOCKER_COMPOSE_FILE} run test'
+                sh 'docker compose -f ${DOCKER_COMPOSE_FILE} run test'
             }
         }
         stage('Cleanup') {
             steps {
                 // Arrête et nettoie les conteneurs, réseaux et volumes
-                sh 'docker-compose -f ${DOCKER_COMPOSE_FILE} down'
+                sh 'docker compose -f ${DOCKER_COMPOSE_FILE} down'
             }
         }
     }
