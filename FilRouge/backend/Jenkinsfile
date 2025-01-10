@@ -36,7 +36,7 @@ pipeline {
                         git config --global user.name "angdiaye001"
                         git config --global user.email "mamindiaye0101@gmail.com"
                         git tag -a ${RELEASE_VERSION} -m "Release ${RELEASE_VERSION}"
-                        git push https://github.com/agndiaye001/FilRouge.git ${RELEASE_VERSION}
+                        git push https://${GITHUB_TOKEN}@github.com/agndiaye001/FilRouge.git ${RELEASE_VERSION}
                         """
                     
                     }
