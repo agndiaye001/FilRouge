@@ -1,9 +1,23 @@
 pipeline {
     agent any
     stages {
-       stage('List Files') {
-           steps {
-                sh 'ls -la'
+        stage('List Files') {
+            steps {
+                sh 'ls -la FilRouge/backend'
+            }
+        }
+        stage('Build') {
+            steps {
+                script {
+                    // Construire l'image Docker en utilisant le Dockerfile dans le bon répertoire
+                    def customImage = docker.build('python:3.12.2', 'FilRouge/backend')
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                // Vérifier la version de Docker
+                sh 'docker --version'
             }
         }
     }
