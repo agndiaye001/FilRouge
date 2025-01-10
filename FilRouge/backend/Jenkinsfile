@@ -23,6 +23,32 @@ pipeline {
                 }
             }
         }
+        stage('Release') {
+            steps {
+                script {
+                    // Génère un numéro de version en fonction de la date ou d'autres paramètres
+                    RELEASE_VERSION = "v1.0.${env.BUILD_NUMBER}"
+                    echo "Creating Release: ${RELEASE_VERSION}"
+
+                    // Crée un tag Git pour la release
+                    sh """
+                    git config user.name "Jenkins CI"
+                    git config user.email "mamindiaye0101@gmail.com"
+                    git tag -a ${RELEASE_VERSION} -m "Release ${RELEASE_VERSION}"
+                    git push origin ${RELEASE_VERSION}
+                    """
+
+                    // Publier un artefact ou une release (exemple pour GitHub)
+                    // Vous pouvez ajouter des étapes pour télécharger des fichiers à une plateforme comme GitHub, Nexus ou Artifactory.
+                }
+            }
+        }
+        stage('Cleanup') {
+            steps {
+                // Arrête et nettoie les conteneurs, réseaux et volumes
+                sh 'docker-compose -f ${DOCKER_COMPOSE_FILE} down'
+            }
+        }
         
     }
     post {
