@@ -9,20 +9,28 @@ RUN npm install
 
 COPY . .
 
+RUN npm run build
+
  
 #---------------------------------------------
 # Development Stage
-FROM nginx:stable-alpine AS development
+#FROM nginx:stable-alpine AS development
 
-EXPOSE 3000
+#EXPOSE 3000
 
-COPY /app /usr/share/nginx/html
+#COPY /app /usr/share/nginx/html
 
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
 
+#---------------------------------------------
+# Production Stage
+FROM nginx:stable-alpine AS production
 
-RUN npm run build
+COPY --from=build /app/build /usr/share/nginx/html
 
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
 
 
 
