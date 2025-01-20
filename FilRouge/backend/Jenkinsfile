@@ -37,7 +37,7 @@ pipeline {
                     sh 'docker container commit db postgres'
                     
                     // Ajouter un tag à l'image avant le push
-                    sh 'docker image tag backend:latest evandiaye/backend-backend:latest'
+                    sh 'docker image tag backend-backend:latest evandiaye/backend-backend:latest'
                     sh 'docker image tag db:latest evandiaye/postgres:latest'
                     // Pousser l'image taguée
                     sh 'docker image push evandiaye/backend-backend:latest'
