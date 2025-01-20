@@ -31,11 +31,12 @@ pipeline {
                         sh 'docker login -u evandiaye -p ${dockerhub_pwd}'
                     }
 
-
+                    // Commit - container - images 
+                    sh 'container commit 105048cd3369 backend-backend'
                     // Ajouter un tag à l'image avant le push
-                    sh 'docker tag db evandiaye/db:latest'
+                    sh 'docker image tag backend-backend:latest evandiaye/backend-backend:latest'
                     // Pousser l'image taguée
-                    sh 'docker push evandiaye/db:latest'
+                    sh 'docker image push evandiaye/backend-backend:latest'
                 }
             }
         }
