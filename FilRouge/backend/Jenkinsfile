@@ -23,7 +23,7 @@ pipeline {
                 }
             }
         }
-         stage('Push Image Docker') {
+        stage('Push Image Docker') {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub_pwd')])  {
@@ -32,33 +32,7 @@ pipeline {
                 }
             }
         }
-        stage('Release') {
-            steps {
-                script {
-                    // Génère un numéro de version en fonction de la date ou d'autres paramètres
-                    RELEASE_VERSION = "v1.0.${env.BUILD_NUMBER}"
-                    echo "Creating Release: ${RELEASE_VERSION}"
-
-                    // Crée un tag Git pour la release
-                    withCredentials([string(credentialsId: 'token-github', variable: 'GITHUB_TOKEN')])  {
-                        sh """
-                        git config --global user.name "angdiaye001"
-                        git config --global user.email "mamindiaye0101@gmail.com"
-                        git config --global credential.helper
-                        git tag -a ${RELEASE_VERSION} -m "Release ${RELEASE_VERSION}"
-                        git push https://${GITHUB_TOKEN}@github.com/agndiaye001/FilRouge.git ${RELEASE_VERSION}
-                        """
-                    
-                    }
-                    
-                    sh "git tag"
-                    sh "git ls-remote --tags origin"
-
-                    // Publier un artefact ou une release (exemple pour GitHub)
-                    // Vous pouvez ajouter des étapes pour télécharger des fichiers à une plateforme comme GitHub, Nexus ou Artifactory.
-                }
-            }
-        }
+        
         stage('Cleanup') {
             steps {
                 // Arrête et nettoie les conteneurs, réseaux et volumes
