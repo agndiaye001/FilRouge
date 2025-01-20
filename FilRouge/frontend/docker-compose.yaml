@@ -1,5 +1,6 @@
 services:  
-  web:
+  # faire demarage local en le nommant web 
+  nginx:
     image: nginx:stable-alpine
     volumes:
       - ./build:/usr/share/nginx/html  
