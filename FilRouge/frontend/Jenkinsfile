@@ -36,7 +36,7 @@ pipeline {
                     sh 'docker container commit frontend-nginx-1 nginx'
                     
                     // Ajouter un tag à l'image avant le push
-                    sh 'docker image tag nginx:stable-alpine evandiaye/ nginx:stable-alpine'
+                    sh 'docker image tag nginx:stable-alpine evandiaye/nginx:stable-alpine'
                     // Pousser l'image taguée
                     sh 'docker image push evandiaye/nginx:stable-alpine'
 
