@@ -38,7 +38,7 @@ pipeline {
                     
                     // Ajouter un tag à l'image avant le push
                     sh 'docker image tag backend:latest evandiaye/backend-backend:latest'
-                    sh 'docker image tag dbpostgres:latest evandiaye/postgreslatest'
+                    sh 'docker image tag dbpostgres:latest evandiaye/postgres:latest'
                     // Pousser l'image taguée
                     sh 'docker image push evandiaye/backend-backend:latest'
                     sh 'docker image push evandiaye/dbpostgres:latest'
