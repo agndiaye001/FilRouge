@@ -33,7 +33,7 @@ pipeline {
 
                     // Commit - container - images 
                     sh 'docker container ls'
-                    sh 'docker container commit backend-backend   backend-backend'
+                    sh 'docker container commit backend backend-backend'
                     // Ajouter un tag à l'image avant le push
                     sh 'docker image tag backend-backend:latest evandiaye/backend-backend:latest'
                     // Pousser l'image taguée
