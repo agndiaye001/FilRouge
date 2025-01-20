@@ -29,6 +29,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub_pwd')])  {
                         sh 'docker login -u evandiaye -p ${dockerhub_pwd}'
                     }
+                    sh 'docker push evandiaye/filrouge'
                 }
             }
         }
