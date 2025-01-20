@@ -6,13 +6,11 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm install
-RUN npm install react-router-dom@latest
-
+npm install @react-navigation/native
 
 COPY . .
 
 RUN npm run build
-
  
 #---------------------------------------------
 # Development Stage
