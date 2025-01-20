@@ -1,0 +1,22 @@
+services:
+  localdev:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - ./node_modules:/app/node_modules
+    environment:
+      NODE_ENV: development
+    stdin_open: true
+    tty: true
+    command: npm start  
+    
+  web:
+    image: nginx:stable-alpine
+    volumes:
+      - ./build:/usr/share/nginx/html  
+    ports:
+      - "80:80"
+    depends_on:
+      - web
