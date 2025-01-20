@@ -6,7 +6,7 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm install
-npm install @react-navigation/native
+RUN npm install @react-navigation/native
 
 COPY . .
 
