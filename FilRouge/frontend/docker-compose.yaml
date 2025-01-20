@@ -5,5 +5,3 @@ services:
       - ./build:/usr/share/nginx/html  
     ports:
       - "80:80"
-    depends_on:
-      - web
