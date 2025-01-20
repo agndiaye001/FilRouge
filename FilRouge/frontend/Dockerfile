@@ -24,6 +24,7 @@ RUN npm install --only=production
 
 # Build the app (this can be an npm run build or your own custom command)
 RUN npm run build
+RUN ls build
 
 #---------------------------------------------
 # Development Stage
