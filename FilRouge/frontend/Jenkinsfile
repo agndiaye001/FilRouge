@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    environment {
+        DOCKER_FILE = 'FilRouge/FilRouge/frontend/Dockerfile'
+    }
+    stages {
+        stage('List Files') {
+            steps {
+                // Liste les fichiers du répertoire
+                sh 'ls -la FilRouge/backend'
+                sh 'cat ${DOCKER_FILE} '
+            }
+        }
+        stage('Build Docker') {
+            steps {
+                script {
+                    // Vérifie si le répertoire existe
+                    if (!fileExists('FilRouge/frontend')) {
+                        error "Le répertoire 'FilRouge/frontend' est introuvable."
+                    }
+                    // Lance le build avec docker-compose
+                    sh 'docker compose -f ${DOCKER_FILE} up --build -d'
+                    sh 'docker images'
+                }
+            }
+        }
+       
+        
+        stage('Cleanup') {
+            steps {
+                // Arrête et nettoie les conteneurs, réseaux et volumes
+                sh 'docker compose -f ${DOCKER_COMPOSE_FILE} down'
+            }
+        }
+        
+    }
+    post {
+        failure {
+            echo 'Une erreur est survenue pendant le pipeline.'
+        }
+        always {
+            echo 'Pipeline terminé.'
+        }
+    }
+}
