@@ -32,9 +32,9 @@ pipeline {
 
 
                     // Ajouter un tag à l'image avant le push
-                    sh 'docker tag filrouge evandiaye/filrouge:latest'
+                    sh 'docker tag db evandiaye/db:latest'
                     // Pousser l'image taguée
-                    sh 'docker push evandiaye/filrouge:latest'
+                    sh 'docker push evandiaye/db:latest'
                 }
             }
         }
