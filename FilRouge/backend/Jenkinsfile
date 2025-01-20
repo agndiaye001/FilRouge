@@ -23,6 +23,15 @@ pipeline {
                 }
             }
         }
+         stage('Push Image Docker') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub_pwd')])  {
+                        sh docler login -u evandiaye -p ${dockerhub_pwd}
+                    }
+                }
+            }
+        }
         stage('Release') {
             steps {
                 script {
