@@ -48,6 +48,8 @@ pipeline {
             steps {
                 // Arrête et nettoie les conteneurs, réseaux et volumes
                 sh 'docker compose -f ${DOCKER_COMPOSE_FILE} down'
+                // Nettoyer les images Docker non utilisées et les volumes orphan
+                sh 'docker system prune -af --volumes'
             }
         }
         
