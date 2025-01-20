@@ -36,7 +36,7 @@ pipeline {
         stage('Cleanup') {
             steps {
                 // Arrête et nettoie les conteneurs, réseaux et volumes
-                sh 'docker-compose -f ${DOCKER_COMPOSE_FILE} down'
+                sh 'docker compose -f ${DOCKER_COMPOSE_FILE} down'
             }
         }
         
